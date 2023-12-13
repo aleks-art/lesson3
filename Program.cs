@@ -1,22 +1,29 @@
-﻿// Задайте массив на 10 целых чисел. Напишите программу, которая определяет количество чётных чисел в массиве.
+﻿// Дано натуральное число в диапазоне от 1 до 100 000. Создайте массив, состоящий из цифр этого числа. Старший разряд числа должен располагаться на 0-м индексе массива, младший – на последнем. Размер массива должен быть равен количеству цифр.
 using System;
 using System.IO;
 internal class Program
 {
     private static void Main(string[] args)
     {
-        Random rnd = new Random();
-        int count = 0;
-        int[] array = new int [9];
-        for (int i = 0; i < array.Length; i++)
+        Console.WriteLine("Введите число от 1 до 100 000 ");
+        int count = Convert.ToInt32(Console.ReadLine());
+        int count1 = count;
+        int del = 1;
+        int leng = 1;
+        while (count1>=10)
         {
-            array[i] = rnd.Next(0, 1010);
-
-            if (array[i]%2==0)
-            {
-                count++;
-            }
+            count1 = count1 / 10;
+            del *= 10;
+            leng++;
         }
-        Console.WriteLine("Количество чётных элементов массива, " + count);
+               int[] array = new int [leng];
+        for (int i = 0; i < leng; i++)
+        {
+           array[i]= count/del;
+           count %= del;
+           del /= 10;
+           Console.Write(array[i]+" ");
+        }
+        
     }
 }
